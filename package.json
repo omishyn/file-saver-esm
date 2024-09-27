@@ -1,0 +1,56 @@
+{
+  "name": "file-saver",
+  "version": "2.0.5",
+  "description": "An HTML5 saveAs() FileSaver implementation",
+  "main": "dist/FileSaver.min.js",
+  "files": [
+    "dist/FileSaver.js",
+    "dist/FileSaver.min.js",
+    "dist/FileSaver.min.js.map",
+    "src/FileSaver.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "clean": "rm -fr dist && mkdir dist",
+    "build:development": "babel -o dist/FileSaver.js --plugins @babel/plugin-transform-modules-umd src/FileSaver.js",
+    "build:production": "babel -o dist/FileSaver.min.js -s --plugins @babel/plugin-transform-modules-umd --presets minify src/FileSaver.js",
+    "build": "npm run clean && npm run build:development && npm run build:production && npm run build:esnext",
+    "build:esnext": "ngc -p tsconfig.esnext.json && cp ./lib/package.json ./dist && cp ./LICENSE.txt ./dist && cp ./README.md ./dist",
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eligrey/FileSaver.js"
+  },
+  "keywords": [
+    "filesaver",
+    "saveas",
+    "blob"
+  ],
+  "author": "Eli Grey <me@eligrey.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eligrey/FileSaver.js/issues"
+  },
+  "homepage": "https://github.com/eligrey/FileSaver.js#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-transform-classes": "^7.23.8",
+    "@babel/plugin-transform-modules-umd": "^7.1.0",
+    "@babel/preset-env": "^7.23.8",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-preset-minify": "^0.4.3",
+    "prettier": "3.2.5",
+    "@angular/cli": "^7.3.9",
+    "@angular/compiler": "^7.2.15",
+    "@angular/compiler-cli": "^7.2.15",
+    "@angular/core": "^7.2.15",
+    "typescript": "^3.2.4",
+    "zone.js": "^0.8.26"
+  }
+}
